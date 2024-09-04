@@ -1,33 +1,43 @@
 variable "prefix" {
-  type = string
+  type        = string
   description = "prefix for the resources, needs to be 15 chars or less"
 }
 
 variable "region" {
-  type = string
+  type        = string
   description = "The region in which to create GCP resources"
-  default = "europe-west1"
+  default     = "europe-west1"
 }
 
 variable "project_id" {
-  type = string
+  type        = string
   description = "The ID of the GCP project"
 }
 
 variable "enable_bucket_versioning" {
-  type = bool
+  type        = bool
   description = "Enable or not GCP bucket versioning"
-  default = false
+  default     = false
 }
 
 variable "create_certs" {
-  type = bool
+  type        = bool
   description = "Create or not GCP managed certs"
-  default = true
+  default     = true
 }
 
 variable "access_key_version" {
-  type = string
+  type        = string
   description = "Version of HMAC key"
-  default = "latest"
+  default     = "latest"
+}
+
+variable "create_global_address" {
+  type        = bool
+  description = "Create or not a global IPV4 address"
+}
+
+variable "global_address" {
+  type        = string
+  description = "The address for the ALB if create_global_address is false"
 }

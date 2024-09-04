@@ -1,8 +1,8 @@
 resource "google_storage_bucket" "private_bucket" {
-  name = "${var.prefix}-private-bucket"
-  location = var.region
-  storage_class = "STANDARD"
-  public_access_prevention = "enforced"
+  name                        = "${var.prefix}-private-bucket"
+  location                    = var.region
+  storage_class               = "STANDARD"
+  public_access_prevention    = "enforced"
   uniform_bucket_level_access = true
 
   versioning {
@@ -12,6 +12,6 @@ resource "google_storage_bucket" "private_bucket" {
 }
 
 resource "google_storage_hmac_key" "private_bucket_hmac_key" {
-  project = var.project_id
+  project               = var.project_id
   service_account_email = google_service_account.private_bucket_sa.email
 }
