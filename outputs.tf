@@ -1,5 +1,5 @@
 output "alb_ip" {
-  value = local.address
+  value       = local.address
   description = "The IP of the Application load balancer"
 }
 

@@ -11,8 +11,8 @@ resource "google_compute_global_forwarding_rule" "alb_forwarding_rule_https" {
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL_MANAGED"
   port_range            = "443"
-  target                = google_compute_target_https_proxy.alb_target_https_proxy.id
-  ip_address            = google_compute_global_address.alb_global_address.id
+  target                = google_compute_target_https_proxy.alb_https_target_proxy.id
+  ip_address            = local.address
 }
 
 resource "google_compute_global_forwarding_rule" "alb_forwarding_rule_http" {
@@ -21,8 +21,8 @@ resource "google_compute_global_forwarding_rule" "alb_forwarding_rule_http" {
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL_MANAGED"
   port_range            = "80"
-  target                = google_compute_target_https_proxy.alb_target_http_proxy.id
-  ip_address            = google_compute_global_address.alb.id
+  target                = google_compute_target_http_proxy.alb_http_target_proxy.id
+  ip_address            = local.address
 }
 
 resource "google_compute_url_map" "https_redirect_url_map" {
@@ -68,7 +68,7 @@ resource "google_compute_backend_service" "private_bucket_backend_svc" {
   enable_cdn            = true
 
   custom_request_headers = [
-    "host: ${google_compute_global_network_endpoint.private_bucket_ne.private_bucket_ne.fqdn}"
+    "host: ${google_compute_global_network_endpoint.private_bucket_ne.fqdn}"
   ]
 
   backend {

@@ -41,3 +41,8 @@ variable "global_address" {
   type        = string
   description = "The address for the ALB if create_global_address is false"
 }
+
+variable "domain_name" {
+  type = string
+  description = "The domain name associated with the certs"
+}
