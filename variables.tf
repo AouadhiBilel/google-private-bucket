@@ -35,6 +35,7 @@ variable "access_key_version" {
 variable "create_global_address" {
   type        = bool
   description = "Create or not a global IPV4 address"
+  default     = true
 }
 
 variable "global_address" {
@@ -43,6 +44,6 @@ variable "global_address" {
 }
 
 variable "domain_name" {
-  type = string
+  type        = string
   description = "The domain name associated with the certs"
 }
