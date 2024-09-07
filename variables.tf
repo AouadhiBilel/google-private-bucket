@@ -47,3 +47,13 @@ variable "domain_name" {
   type        = string
   description = "The domain name associated with the certs"
 }
+
+variable "dns_zone" {
+  type        = string
+  description = "Name of The DNS zone on GCP"
+}
+
+variable "create_dns_record" {
+  type        = bool
+  description = "Create or not a record set in GCP"
+}

@@ -4,7 +4,7 @@ resource "google_compute_managed_ssl_certificate" "alb_managed_cert" {
   name    = "${var.prefix}-managed-alb-certs"
 
   managed {
-    domains = [var.domain_name]
+    domains = [local.domain_name]
   }
 }
 

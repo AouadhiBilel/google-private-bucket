@@ -84,3 +84,17 @@ resource "google_compute_backend_service" "private_bucket_backend_svc" {
     }
   }
 }
+
+data "google_dns_managed_zone" "dns_zone" {
+  project = var.project_id
+  name    = var.dns_zone
+}
+resource "google_dns_record_set" "lb_a_record" {
+  count        = var.create_dns_record ? 1 : 0
+  project      = var.project_id
+  name         = "${var.prefix}.${data.google_dns_managed_zone.dns_zone}"
+  managed_zone = data.google_dns_managed_zone.dns_zone
+  type         = "A"
+  ttl          = 300
+  rrdatas      = [google_compute_global_address.alb_global_address[*].address]
+}
